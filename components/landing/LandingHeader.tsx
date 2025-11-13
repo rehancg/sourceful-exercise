@@ -15,8 +15,8 @@ export function LandingHeader() {
 
 function LandingHeaderContent() {
   return (
-    <header className="p-4 sm:p-6 md:px-8">
-      <div className="flex justify-between items-center max-w-7xl mx-auto">
+    <header className="w-full p-4 sm:p-6 md:px-8">
+      <div className="flex justify-between items-center mx-auto">
         {/* Left Side */}
         <div className="flex items-center gap-4">
           <MobileMenuButton />

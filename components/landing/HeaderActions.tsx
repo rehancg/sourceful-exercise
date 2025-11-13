@@ -5,7 +5,7 @@ export function HeaderActions() {
   return (
     <div className="flex items-center gap-2">
       {/* Desktop Action Buttons */}
-      <div className="hidden lg:flex items-center gap-2">
+      <div className="hidden lg:flex items-center gap-6">
         <Button variant="secondary" className="h-auto px-4 py-2">
           Login or sign up
         </Button>
