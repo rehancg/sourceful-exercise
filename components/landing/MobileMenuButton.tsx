@@ -12,8 +12,10 @@ export function MobileMenuButton() {
       size="md"
       variant="default"
       className="lg:hidden"
-      aria-label="Toggle menu"
+      aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
       aria-expanded={isOpen}
+      aria-controls="mobile-menu"
+      type="button"
     >
       {isOpen ? (
         <svg

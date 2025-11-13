@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,13 +8,13 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export function IconButton({
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(function IconButton({
   children,
   size = 'md',
   variant = 'default',
   className,
   ...props
-}: IconButtonProps) {
+}, ref) {
   const baseStyles = cn(
     "flex items-center justify-center",
     "rounded-full",
@@ -50,11 +50,12 @@ export function IconButton({
 
   return (
     <button
+      ref={ref}
       className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
       {...props}
     >
       {children}
     </button>
   );
-}
+});
 

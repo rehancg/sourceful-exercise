@@ -15,7 +15,10 @@ export function LandingHeader() {
 
 function LandingHeaderContent() {
   return (
-    <header className="w-full p-4 sm:p-6 md:px-8">
+    <header 
+        className="w-full p-4 sm:p-6 md:px-8"
+        role="banner"
+      >
       <div className="flex justify-between items-center mx-auto">
         {/* Left Side */}
         <div className="flex items-center gap-4">

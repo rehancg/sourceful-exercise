@@ -6,10 +6,18 @@ export function HeaderActions() {
     <div className="flex items-center gap-2">
       {/* Desktop Action Buttons */}
       <div className="hidden lg:flex items-center gap-6">
-        <Button variant="secondary" className="h-auto px-4 py-2">
+        <Button 
+          variant="secondary" 
+          className="h-auto px-4 py-2"
+          aria-label="Login or sign up to your account"
+        >
           Login or sign up
         </Button>
-        <Button variant="primary" className="h-auto px-4 py-2">
+        <Button 
+          variant="primary" 
+          className="h-auto px-4 py-2"
+          aria-label="Start using Sourceful for free"
+        >
           Start for free
         </Button>
       </div>
@@ -19,7 +27,8 @@ export function HeaderActions() {
         <IconButton
           size="md"
           variant="ghost"
-          aria-label="User account"
+          aria-label="Open user account menu"
+          type="button"
         >
           <svg
             className="w-6 h-6"
@@ -35,7 +44,11 @@ export function HeaderActions() {
             />
           </svg>
         </IconButton>
-        <Button variant="primary" className="h-auto px-4 py-2 text-sm">
+        <Button 
+          variant="primary" 
+          className="h-auto px-4 py-2 text-sm"
+          aria-label="Start using Sourceful for free"
+        >
           Start for free
         </Button>
       </div>
