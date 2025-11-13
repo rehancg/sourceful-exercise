@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { NAV_LINKS } from '@/lib/constants';
 
 export function DesktopNavigation() {
-  const navLinkBase = "font-medium transition-colors";
+  const navLinkBase = "font-semibold transition-colors";
   const navLinkStyles = "text-[var(--color-text-secondary-light)] hover:text-[var(--color-text-primary-light)]";
 
   return (

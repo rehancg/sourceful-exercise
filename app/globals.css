@@ -8,12 +8,11 @@
 @theme {
   --font-display: var(--font-display);
   
-  /* Custom Colors - Tailwind v4 format */
   --color-primary: #7F56D9;
   --color-background-light: #F9FAFB;
   --color-surface-light: #FFFFFF;
-  --color-text-primary-light: #101828;
-  --color-text-secondary-light: #667085;
+  --color-text-primary-light: #222222;
+  --color-text-secondary-light: #464646;
   
   /* Border Radius */
   --radius: 1rem;

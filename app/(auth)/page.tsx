@@ -1,7 +1,9 @@
+import { HeroSection } from '@/components/landing/HeroSection';
+
 export default function LandingPage() {
   return (
     <>
-      {/* Hero and image generation components will go here */}
+      <HeroSection />
     </>
   );
 }
