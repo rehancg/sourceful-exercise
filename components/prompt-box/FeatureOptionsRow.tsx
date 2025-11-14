@@ -1,5 +1,8 @@
+'use client';
+
 import { useRef, useState, useEffect } from 'react';
 import { FeatureOption } from './FeatureOption';
+import { MoreToolsModal } from './MoreToolsModal';
 import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features';
 import { FeatureOptionId } from '@/lib/constants';
 import { IconButton } from '@/components/ui/IconButton';
@@ -17,6 +20,9 @@ export function FeatureOptionsRow({
   const featureRefs = useRef<Map<FeatureOptionId, HTMLButtonElement>>(new Map());
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [isMoreToolsOpen, setIsMoreToolsOpen] = useState(false);
+
+  const selectedFeatureData = PROMPT_BOX_FEATURES.find(f => f.id === selectedFeature);
 
   const checkScrollability = () => {
     if (scrollContainerRef.current) {
@@ -92,59 +98,102 @@ export function FeatureOptionsRow({
   }, [selectedFeature]);
 
   return (
-    <div className="relative mb-6">
-      <div
-        ref={scrollContainerRef}
-        onScroll={handleScroll}
-        className="flex items-center gap-4 overflow-x-auto scrollbar-hide pb-2"
-      >
-        {PROMPT_BOX_FEATURES.map((feature) => (
-          <FeatureOption
-            key={feature.id}
-            feature={feature}
-            isSelected={selectedFeature === feature.id}
-            onClick={() => onFeatureSelect?.(feature.id)}
-            ref={(el) => {
-              if (el) {
-                featureRefs.current.set(feature.id, el);
-              } else {
-                featureRefs.current.delete(feature.id);
-              }
-            }}
-          />
-        ))}
+    <>
+      {/* Mobile View - Show selected feature + More tools button */}
+      <div className="md:hidden relative mb-6">
+        <div className="flex items-center gap-4">
+          {selectedFeatureData && (
+            <div className="flex-1">
+              <FeatureOption
+                feature={selectedFeatureData}
+                isSelected={true}
+                onClick={() => onFeatureSelect?.(selectedFeatureData.id)}
+              />
+            </div>
+          )}
+          <div className="flex-1">
+            <FeatureOption
+              feature={{
+                id: 'more-tools' as FeatureOptionId,
+                label: 'More tools',
+                icon: (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 4L12 10L18 4H6Z" />
+                    <rect x="4" y="12" width="4" height="4" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
+                    <circle cx="16" cy="14" r="2" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
+                  </svg>
+                ),
+              }}
+              isSelected={false}
+              onClick={() => setIsMoreToolsOpen(true)}
+            />
+          </div>
+        </div>
       </div>
-      {canScrollLeft && (
-        <div className="absolute left-0 top-0 bottom-0 flex items-center justify-start pointer-events-none pl-2">
-          <IconButton
-            onClick={scrollLeft}
-            size="md"
-            variant="default"
-            className="flex-shrink-0 pointer-events-auto bg-white shadow-md hover:bg-gray-50 z-10"
-            aria-label="Scroll left to see previous options"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </IconButton>
+
+      {/* Desktop View - Full horizontal scrollable row */}
+      <div className="hidden md:block relative mb-6">
+        <div
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          className="flex items-center gap-4 overflow-x-auto scrollbar-hide pb-2"
+        >
+          {PROMPT_BOX_FEATURES.map((feature) => (
+            <FeatureOption
+              key={feature.id}
+              feature={feature}
+              isSelected={selectedFeature === feature.id}
+              onClick={() => onFeatureSelect?.(feature.id)}
+              ref={(el) => {
+                if (el) {
+                  featureRefs.current.set(feature.id, el);
+                } else {
+                  featureRefs.current.delete(feature.id);
+                }
+              }}
+            />
+          ))}
         </div>
-      )}
-      {canScrollRight && (
-        <div className="absolute right-0 top-0 bottom-0 flex items-center justify-end pointer-events-none pr-2">
-          <IconButton
-            onClick={scrollRight}
-            size="md"
-            variant="default"
-            className="flex-shrink-0 pointer-events-auto bg-white shadow-md hover:bg-gray-50 z-10"
-            aria-label="Scroll right to see more options"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </IconButton>
-        </div>
-      )}
-    </div>
+        {canScrollLeft && (
+          <div className="absolute left-0 top-0 bottom-0 flex items-center justify-start pointer-events-none pl-2">
+            <IconButton
+              onClick={scrollLeft}
+              size="md"
+              variant="default"
+              className="flex-shrink-0 pointer-events-auto bg-white shadow-md hover:bg-gray-50 z-10"
+              aria-label="Scroll left to see previous options"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </IconButton>
+          </div>
+        )}
+        {canScrollRight && (
+          <div className="absolute right-0 top-0 bottom-0 flex items-center justify-end pointer-events-none pr-2">
+            <IconButton
+              onClick={scrollRight}
+              size="md"
+              variant="default"
+              className="flex-shrink-0 pointer-events-auto bg-white shadow-md hover:bg-gray-50 z-10"
+              aria-label="Scroll right to see more options"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </IconButton>
+          </div>
+        )}
+      </div>
+
+      {/* More Tools Modal */}
+      <MoreToolsModal
+        isOpen={isMoreToolsOpen}
+        onClose={() => setIsMoreToolsOpen(false)}
+        selectedFeature={selectedFeature}
+        onFeatureSelect={onFeatureSelect}
+      />
+    </>
   );
 }
 

@@ -16,7 +16,7 @@ export const FeatureOption = forwardRef<HTMLButtonElement, FeatureOptionProps>(
         onClick={onClick}
         className={cn(
           'flex flex-col items-center justify-center gap-2 p-3 rounded-lg transition-all duration-200',
-          'w-[130px] h-[110px] flex-shrink-0',
+          'w-full md:w-[130px] h-[110px] flex-shrink-0',
           isSelected
             ? 'bg-[#D5ECFF]'
             : 'hover:bg-gray-50'
@@ -24,7 +24,10 @@ export const FeatureOption = forwardRef<HTMLButtonElement, FeatureOptionProps>(
         aria-label={feature.label}
         aria-pressed={isSelected}
       >
-      <div className="text-black">
+      <div className={cn(
+        'text-black p-2 rounded-lg flex items-center justify-center',
+        isSelected ? 'bg-blue-200' : 'bg-white border border-gray-200'
+      )}>
         {feature.icon}
       </div>
       <div className="flex flex-col items-center gap-1">
