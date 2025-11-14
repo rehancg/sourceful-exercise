@@ -1,10 +1,19 @@
 import type { ReactNode } from 'react';
 import type { FeatureOptionId } from './constants';
+import type { TooltipImage } from '@/components/ui/Tooltip';
 
 export interface ActionButtonConfig {
   text: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+}
+
+export interface TooltipConfig {
+  title: string;
+  description?: string;
+  image?: TooltipImage;
+  variant?: 'text' | 'image';
+  position?: 'top' | 'bottom' | 'left' | 'right';
 }
 
 export interface FeatureOption {
@@ -15,6 +24,8 @@ export interface FeatureOption {
   comingSoon?: boolean;
   actionButton?: ActionButtonConfig;
   infoMessage?: string;
+  tooltip?: TooltipConfig;
+  addButtonTooltip?: TooltipConfig;
 }
 
 export const PROMPT_BOX_FEATURES: FeatureOption[] = [
@@ -36,6 +47,19 @@ export const PROMPT_BOX_FEATURES: FeatureOption[] = [
         </svg>
       ),
     },
+    tooltip: {
+      title: 'Create image',
+      description: 'Create AI imagery using state-of-the-art image models.',
+      variant: 'image',
+      image: { src: '/images/prompt-create-image.webp', alt: 'Prompt Create Image' },
+      position: 'bottom',
+    },
+    addButtonTooltip: {
+      title: 'Add files',
+      description: 'Upload images, documents, or other files to enhance your prompt.',
+      variant: 'text',
+      position: 'bottom',
+    },
   },
   {
     id: 'packaging-design',
@@ -45,6 +69,12 @@ export const PROMPT_BOX_FEATURES: FeatureOption[] = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
     ),
+    tooltip: {
+      title: 'Packaging design',
+      description: 'Design professional packaging for your products with AI-powered tools.',
+      variant: 'text',
+      position: 'bottom',
+    },
   },
   {
     id: 'logo-design',

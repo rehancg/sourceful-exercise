@@ -48,6 +48,7 @@ export function PromptBox({
   const buttonText = selectedFeatureData?.actionButton?.text;
   const buttonLeftIcon = selectedFeatureData?.actionButton?.leftIcon;
   const buttonRightIcon = selectedFeatureData?.actionButton?.rightIcon;
+  const addButtonTooltip = selectedFeatureData?.addButtonTooltip;
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
@@ -57,7 +58,7 @@ export function PromptBox({
   return (
     <div
       className={cn(
-        'bg-white rounded-4xl m-2 md:m-4 p-4 md:p-8',
+        'bg-white rounded-4xl m-4 p-4 md:p-8',
         className
       )}
     >
@@ -89,6 +90,7 @@ export function PromptBox({
           actionButtonText={buttonText}
           actionButtonLeftIcon={buttonLeftIcon}
           actionButtonRightIcon={buttonRightIcon}
+          addButtonTooltip={addButtonTooltip}
         />
       )}
     </div>

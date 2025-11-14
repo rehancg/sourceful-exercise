@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 import { FeatureOption as FeatureOptionType } from '@/lib/prompt-box-features';
+import { Tooltip } from '@/components/ui/Tooltip';
 
 interface FeatureOptionProps {
   feature: FeatureOptionType;
@@ -10,7 +11,7 @@ interface FeatureOptionProps {
 
 export const FeatureOption = forwardRef<HTMLButtonElement, FeatureOptionProps>(
   function FeatureOption({ feature, isSelected = false, onClick }, ref) {
-    return (
+    const buttonContent = (
       <button
         ref={ref}
         onClick={onClick}
@@ -24,28 +25,46 @@ export const FeatureOption = forwardRef<HTMLButtonElement, FeatureOptionProps>(
         aria-label={feature.label}
         aria-pressed={isSelected}
       >
-      <div className={cn(
-        'text-black p-2 rounded-lg flex items-center justify-center',
-        isSelected ? 'bg-blue-200' : 'bg-white border border-gray-200'
-      )}>
-        {feature.icon}
-      </div>
-      <div className="flex flex-col items-center gap-1">
-        <span className="text-xs font-medium text-black">
-          {feature.label}
-        </span>
-        {feature.comingSoon ? (
-          <span className="text-xs font-semibold text-orange-500">
-            Coming soon
+        <div className={cn(
+          'text-black p-2 rounded-lg flex items-center justify-center',
+          isSelected ? 'bg-blue-200' : 'bg-white border border-gray-200'
+        )}>
+          {feature.icon}
+        </div>
+        <div className="flex flex-col items-center gap-1">
+          <span className="text-xs font-medium text-black">
+            {feature.label}
           </span>
-        ) : feature.isNew ? (
-          <span className="text-xs font-semibold bg-gradient-r-violet-blue-green bg-clip-text text-transparent">
-            New!
-          </span>
-        ) : null}
-      </div>
-    </button>
+          {feature.comingSoon ? (
+            <span className="text-xs font-semibold text-orange-500">
+              Coming soon
+            </span>
+          ) : feature.isNew ? (
+            <span className="text-xs font-semibold bg-gradient-r-violet-blue-green bg-clip-text text-transparent">
+              New!
+            </span>
+          ) : null}
+        </div>
+      </button>
     );
+
+    // Wrap with Tooltip if tooltip config exists
+    if (feature.tooltip) {
+      return (
+        <Tooltip
+          title={feature.tooltip.title}
+          description={feature.tooltip.description}
+          image={feature.tooltip.image}
+          variant={feature.tooltip.variant}
+          position={feature.tooltip.position}
+          wrapperClassName="w-full"
+        >
+          {buttonContent}
+        </Tooltip>
+      );
+    }
+
+    return buttonContent;
   }
 );
 
