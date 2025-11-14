@@ -3,9 +3,12 @@ import { cn } from '@/lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
-  children: ReactNode;
+  children?: ReactNode;
   fullWidth?: boolean;
   className?: string;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  text?: string;
 }
 
 export function Button({
@@ -13,6 +16,9 @@ export function Button({
   children,
   fullWidth = false,
   className,
+  leftIcon,
+  rightIcon,
+  text,
   ...props
 }: ButtonProps) {
   const baseStyles = cn(
@@ -49,12 +55,16 @@ export function Button({
     ),
   };
 
+  const content = text || children;
+
   return (
     <button
       className={cn(baseStyles, variantStyles[variant], className)}
       {...props}
     >
-      {children}
+      {leftIcon && <span className="flex items-center">{leftIcon}</span>}
+      {content && <span>{content}</span>}
+      {rightIcon && <span className="flex items-center">{rightIcon}</span>}
     </button>
   );
 }
