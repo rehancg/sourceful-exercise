@@ -5,7 +5,7 @@ export default function LandingPage() {
   return (
     <>
       <HeroSection />
-      <div className="w-full max-w-4xl mx-auto m-2 md:m-4">
+      <div className="w-full max-w-4xl mx-auto">
         <PromptBox />
       </div>
     </>
