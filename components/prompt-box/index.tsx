@@ -1,5 +1,6 @@
 'use client';
 import { useState, useMemo, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { FeatureOptionsRow } from './FeatureOptionsRow';
 import { PromptInput } from './PromptInput';
 import { InfoBanner } from './InfoBanner';
@@ -20,14 +21,23 @@ export function PromptBox({
   initialPrompt = '',
   initialFeature = PROMPT_BOX_CONFIG.defaultSelectedFeature,
 }: PromptBoxProps) {
+  const router = useRouter();
+  const pathname = usePathname();
   const featureFromQuery = useFeatureFromQuery(initialFeature);
   const [selectedFeature, setSelectedFeature] = useState<FeatureOptionId>(featureFromQuery);
   const [prompt, setPrompt] = useState(initialPrompt);
 
-  // Sync selected usecase with query param when it changes
+  // Sync selected feature with query param when URL changes
   useEffect(() => {
     setSelectedFeature(featureFromQuery);
   }, [featureFromQuery]);
+
+  const handleFeatureSelect = (featureId: FeatureOptionId) => {
+    setSelectedFeature(featureId);
+    const params = new URLSearchParams(window.location.search);
+    params.set('use-case', featureId);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   const selectedFeatureData = useMemo(() => {
     return PROMPT_BOX_FEATURES.find(feature => feature.id === selectedFeature);
@@ -38,10 +48,6 @@ export function PromptBox({
   const buttonText = selectedFeatureData?.actionButton?.text;
   const buttonLeftIcon = selectedFeatureData?.actionButton?.leftIcon;
   const buttonRightIcon = selectedFeatureData?.actionButton?.rightIcon;
-
-  const handleFeatureSelect = (featureId: FeatureOptionId) => {
-    setSelectedFeature(featureId);
-  };
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
