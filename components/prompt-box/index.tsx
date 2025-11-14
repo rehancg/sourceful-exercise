@@ -1,9 +1,10 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { FeatureOptionsRow } from './FeatureOptionsRow';
 import { PromptInput } from './PromptInput';
 import { InfoBanner } from './InfoBanner';
 import { PromptActions } from './PromptActions';
+import { useFeatureFromQuery } from './useFeatureFromQuery';
 import { PROMPT_BOX_CONFIG, FeatureOptionId } from '@/lib/constants';
 import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features';
 import { cn } from '@/lib/utils';
@@ -19,8 +20,14 @@ export function PromptBox({
   initialPrompt = '',
   initialFeature = PROMPT_BOX_CONFIG.defaultSelectedFeature,
 }: PromptBoxProps) {
-  const [selectedFeature, setSelectedFeature] = useState<FeatureOptionId>(initialFeature);
+  const featureFromQuery = useFeatureFromQuery(initialFeature);
+  const [selectedFeature, setSelectedFeature] = useState<FeatureOptionId>(featureFromQuery);
   const [prompt, setPrompt] = useState(initialPrompt);
+
+  // Sync selected usecase with query param when it changes
+  useEffect(() => {
+    setSelectedFeature(featureFromQuery);
+  }, [featureFromQuery]);
 
   const selectedFeatureData = useMemo(() => {
     return PROMPT_BOX_FEATURES.find(feature => feature.id === selectedFeature);
