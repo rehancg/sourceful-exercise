@@ -53,9 +53,9 @@ export function Session() {
     <div className="bg-white min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-6xl mx-auto space-y-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Session Requests</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Ai Imagery Design</h1>
           <p className="text-gray-600">
-            View and manage your AI generation requests
+            3 days ago
           </p>
         </div>
 

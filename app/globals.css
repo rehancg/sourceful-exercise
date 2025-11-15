@@ -26,7 +26,15 @@ body {
 }
 
 .bg-gradient-r-violet-blue-green-subtle {
-  background-image: linear-gradient(90deg, #eacdff, #b3dcff, #8effe4);
+  background-image: 
+    linear-gradient(to bottom, 
+      rgba(234, 205, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 40%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0.8) 75%,
+      rgba(255, 255, 255, 1) 100%
+    ),
+    linear-gradient(90deg, #eacdff 0%, #b3dcff 50%, #8effe4 100%);
 }
 
 .bg-gradient-r-violet-blue-green {

@@ -8,7 +8,7 @@ export function HeroSection() {
           <span className="inline-block bg-[var(--color-text-primary-light)] text-white px-4 py-1 rounded-full">
             iconic {' '}
           </span>
-          today.
+          {' '}today.
         </h1>
       </div>
     </section>
