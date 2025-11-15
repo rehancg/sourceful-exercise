@@ -11,6 +11,7 @@ interface PromptActionsProps {
   actionButtonLeftIcon?: ReactNode;
   actionButtonRightIcon?: ReactNode;
   addButtonTooltip?: TooltipConfig;
+  customActionComponent?: ReactNode; // Custom action component (e.g., GenerateButton)
 }
 
 export function PromptActions({ 
@@ -20,6 +21,7 @@ export function PromptActions({
   actionButtonLeftIcon,
   actionButtonRightIcon,
   addButtonTooltip,
+  customActionComponent,
 }: PromptActionsProps) {
   const addButton = (
     <IconButton
@@ -50,7 +52,10 @@ export function PromptActions({
       ) : (
         addButton
       )}
-      {actionButtonText && (
+      {/* Custom Action Component (e.g., GenerateButton) */}
+      {customActionComponent}
+      {/* Standard Action Button */}
+      {!customActionComponent && actionButtonText && (
         <Button
           variant="primary"
           onClick={onActionClick}

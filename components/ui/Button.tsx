@@ -21,6 +21,7 @@ export function Button({
   leftIcon,
   rightIcon,
   text,
+  disabled,
   ...props
 }: ButtonProps) {
   const sizeStyles = {
@@ -79,11 +80,24 @@ export function Button({
     ),
   };
 
+  const disabledStyles = disabled
+    ? cn(
+        "bg-gray-300",
+        "text-gray-500",
+        "cursor-not-allowed",
+        "hover:bg-gray-300",
+        "hover:!from-gray-300",
+        "hover:!to-gray-300",
+        "active:scale-100"
+      )
+    : "";
+
   const content = text || children;
 
   return (
     <button
-      className={cn(baseStyles, variantStyles[variant], className)}
+      className={cn(baseStyles, variantStyles[variant], disabledStyles, className)}
+      disabled={disabled}
       {...props}
     >
       {leftIcon && <span className="flex items-center">{leftIcon}</span>}

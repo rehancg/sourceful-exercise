@@ -6,6 +6,7 @@ export interface ActionButtonConfig {
   text: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  customComponent?: 'generate'; // Custom component type (e.g., 'generate' for GenerateButton)
 }
 
 export interface TooltipConfig {
@@ -22,7 +23,9 @@ export interface FeatureOption {
   icon: ReactNode;
   isNew?: boolean;
   comingSoon?: boolean;
-  actionButton?: ActionButtonConfig;
+  actionButton?: ActionButtonConfig; // Legacy - use guestActionButton or userActionButton instead
+  guestActionButton?: ActionButtonConfig; // For non-authenticated users
+  userActionButton?: ActionButtonConfig; // For authenticated users
   infoMessage?: string;
   tooltip?: TooltipConfig;
   addButtonTooltip?: TooltipConfig;
@@ -39,13 +42,22 @@ export const PROMPT_BOX_FEATURES: FeatureOption[] = [
       </svg>
     ),
     isNew: true,
-    actionButton: {
+    guestActionButton: {
       text: 'Start for free',
       leftIcon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
         </svg>
       ),
+    },
+    userActionButton: {
+      text: 'Generate',
+      leftIcon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      ),
+      customComponent: 'generate', // Use GenerateButton for authenticated users
     },
     tooltip: {
       title: 'Create image',
