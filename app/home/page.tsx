@@ -1,0 +1,13 @@
+import { PromptBox } from "@/components/prompt-box";
+import { HeroSection } from "@/components/layout/HeroSection";
+
+export default function LandingPage() {
+  return (
+    <div className="flex flex-col md:gap-12 gap-4 md:pt-18">
+      <HeroSection />
+      <div className="w-full max-w-5xl mx-auto">
+        <PromptBox />
+      </div>
+    </div>
+  );
+}

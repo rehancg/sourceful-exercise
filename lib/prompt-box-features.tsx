@@ -51,7 +51,7 @@ export const PROMPT_BOX_FEATURES: FeatureOption[] = [
       title: 'Create image',
       description: 'Create AI imagery using state-of-the-art image models.',
       variant: 'image',
-      image: { src: '/images/prompt-ai-imagery.webp', alt: 'Prompt Create Image' },
+      image: { src: '/images/prompt-create-image.webp', alt: 'Prompt Create Image' },
       position: 'bottom',
     },
     addButtonTooltip: {

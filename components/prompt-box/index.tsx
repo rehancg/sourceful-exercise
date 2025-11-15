@@ -55,10 +55,23 @@ export function PromptBox({
     setPrompt(value);
   };
 
+  const handleActionClick = () => {
+    if (selectedFeature === 'ai-imagery') {
+      // Generate a session ID (in a real app, this would come from the backend)
+      const sessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      // Store prompt in sessionStorage to pass to the session page
+      if (prompt) {
+        sessionStorage.setItem(`session-${sessionId}-prompt`, prompt);
+      }
+      router.push(`/dashboard/session/${sessionId}`);
+    }
+    // Add other feature handlers here
+  };
+
   return (
     <div
       className={cn(
-        'bg-white rounded-4xl m-4 p-4 md:p-8',
+        'bg-white rounded-4xl mx-4 p-4 md:p-8',
         className
       )}
     >
@@ -86,7 +99,7 @@ export function PromptBox({
       {!isComingSoon && (
         <PromptActions
           onAddClick={() => {}}
-          onActionClick={() => {}}
+          onActionClick={handleActionClick}
           actionButtonText={buttonText}
           actionButtonLeftIcon={buttonLeftIcon}
           actionButtonRightIcon={buttonRightIcon}
