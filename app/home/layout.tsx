@@ -1,27 +1,9 @@
-import { SideNav } from "@/components/layout/SideNav";
-import { MobileNav } from "@/components/layout/MobileNav";
-import { UserHeader } from "@/components/layout/UserHeader";
-import { ProtectedRoute } from "@/components/layout/ProtectedRoute";
+import { HomeLayout } from '@/components/layout/HomeLayout';
 
-export default function DashboardLayout({
+export default function HomeLayoutWrapper({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <ProtectedRoute>
-      <div className="flex min-h-screen bg-gradient-r-violet-blue-green-subtle text-[var(--color-text-primary-light)]">
-        <SideNav />
-        <MobileNav />
-        <UserHeader />
-        <main
-          id="main-content"
-          className="flex-1 lg:ml-20 pt-16 lg:pt-0"
-          tabIndex={-1}
-        >
-          {children}
-        </main>
-      </div>
-    </ProtectedRoute>
-  );
+  return <HomeLayout>{children}</HomeLayout>;
 }

@@ -1,5 +1,5 @@
 import { PromptBox } from "@/components/prompt-box";
-import { HeroSection } from "@/components/layout/HeroSection";
+import { HeroSection } from "@/components/home/HeroSection";
 
 export default function LandingPage() {
   return (
