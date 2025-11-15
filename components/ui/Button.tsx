@@ -60,7 +60,7 @@ export function Button({
     "transition-all",
     "duration-200",
     sizeStyles[size],
-    fullWidth && "w-full max-w-[300px]"
+    fullWidth && "w-full"
   );
 
   const variantStyles = {

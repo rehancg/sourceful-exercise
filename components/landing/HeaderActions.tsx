@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 
@@ -6,20 +7,24 @@ export function HeaderActions() {
     <div className="flex items-center gap-2">
       {/* Desktop Action Buttons */}
       <div className="hidden lg:flex items-center gap-6">
-        <Button 
-          variant="secondary" 
-          className="h-auto px-4 py-2"
-          aria-label="Login or sign up to your account"
-        >
-          Login or sign up
-        </Button>
-        <Button 
-          variant="primary" 
-          className="h-auto px-4 py-2"
-          aria-label="Start using Sourceful for free"
-        >
-          Start for free
-        </Button>
+        <Link href="/login">
+          <Button 
+            variant="secondary" 
+            className="h-auto px-4 py-2"
+            aria-label="Login or sign up to your account"
+          >
+            Login or sign up
+          </Button>
+        </Link>
+        <Link href="/signup">
+          <Button 
+            variant="primary" 
+            className="h-auto px-4 py-2"
+            aria-label="Start using Sourceful for free"
+          >
+            Start for free
+          </Button>
+        </Link>
       </div>
 
       {/* Mobile Action Buttons */}
@@ -44,13 +49,15 @@ export function HeaderActions() {
             />
           </svg>
         </IconButton>
-        <Button 
-          variant="primary" 
-          className="h-auto px-4 py-2 text-sm"
-          aria-label="Start using Sourceful for free"
-        >
-          Start for free
-        </Button>
+        <Link href="/signup">
+          <Button 
+            variant="primary" 
+            className="h-auto px-4 py-2 text-sm"
+            aria-label="Start using Sourceful for free"
+          >
+            Start for free
+          </Button>
+        </Link>
       </div>
     </div>
   );
