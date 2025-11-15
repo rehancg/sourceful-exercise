@@ -7,7 +7,7 @@ export const NAV_LINKS = [
 ] as const;
 
 export type FeatureOptionId = 
-  | 'create-image'
+  | 'ai-imagery'
   | 'packaging-design'
   | 'logo-design'
   | 'edit-image'
@@ -18,7 +18,7 @@ export type FeatureOptionId =
   | 'cards-posters';
 
 export const PROMPT_BOX_CONFIG = {
-  defaultSelectedFeature: 'create-image' as FeatureOptionId,
+  defaultSelectedFeature: 'ai-imagery' as FeatureOptionId,
   placeholder: 'Describe what you want to create...',
   showScrollButton: true,
 } as const;

@@ -13,7 +13,7 @@ interface FeatureOptionsRowProps {
 }
 
 export function FeatureOptionsRow({ 
-  selectedFeature = 'create-image',
+  selectedFeature = 'ai-imagery',
   onFeatureSelect 
 }: FeatureOptionsRowProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);

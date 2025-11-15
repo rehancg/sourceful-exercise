@@ -30,7 +30,7 @@ export interface FeatureOption {
 
 export const PROMPT_BOX_FEATURES: FeatureOption[] = [
   {
-    id: 'create-image',
+    id: 'ai-imagery',
     label: 'Create image',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@ export const PROMPT_BOX_FEATURES: FeatureOption[] = [
       title: 'Create image',
       description: 'Create AI imagery using state-of-the-art image models.',
       variant: 'image',
-      image: { src: '/images/prompt-create-image.webp', alt: 'Prompt Create Image' },
+      image: { src: '/images/prompt-ai-imagery.webp', alt: 'Prompt Create Image' },
       position: 'bottom',
     },
     addButtonTooltip: {

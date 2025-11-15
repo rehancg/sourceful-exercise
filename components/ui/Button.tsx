@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
   children?: ReactNode;
   fullWidth?: boolean;
   className?: string;
@@ -13,6 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({
   variant = 'primary',
+  size = 'md',
   children,
   fullWidth = false,
   className,
@@ -21,12 +23,33 @@ export function Button({
   text,
   ...props
 }: ButtonProps) {
+  const sizeStyles = {
+    sm: cn(
+      "h-8",
+      "px-3",
+      "min-h-8",
+      "text-sm",
+      "gap-1.5"
+    ),
+    md: cn(
+      "h-12",
+      "px-4",
+      "min-h-12",
+      "text-base",
+      "gap-2"
+    ),
+    lg: cn(
+      "h-14",
+      "px-6",
+      "min-h-14",
+      "text-lg",
+      "gap-2.5"
+    ),
+  };
+
   const baseStyles = cn(
-    "h-12",
-    "px-4",
-    "min-h-12",
-    "rounded-full",      
-    "text-base",
+    "rounded-full",
+    "flex items-center justify-center",
     "font-medium",
     "leading-6",
     "tracking-normal",
@@ -36,6 +59,7 @@ export function Button({
     "whitespace-nowrap",
     "transition-all",
     "duration-200",
+    sizeStyles[size],
     fullWidth && "w-full max-w-[300px]"
   );
 

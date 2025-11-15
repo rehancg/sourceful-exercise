@@ -14,7 +14,7 @@ export function useFeatureFromQuery(defaultFeature?: FeatureOptionId): FeatureOp
     if (featureFromQuery && PROMPT_BOX_FEATURES.some(f => f.id === featureFromQuery)) {
       return featureFromQuery;
     }
-    return defaultFeature || 'create-image';
+    return defaultFeature || 'ai-imagery';
   }, [featureFromQuery, defaultFeature]);
 }
 
