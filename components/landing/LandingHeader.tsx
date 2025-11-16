@@ -3,7 +3,7 @@ import { DesktopNavigation } from './DesktopNavigation';
 import { HeaderActions } from './HeaderActions';
 import { MobileMenuButton } from './MobileMenuButton';
 import { MobileMenuOverlay } from './MobileMenuOverlay';
-import { MobileMenuProvider } from './MobileMenuProvider';
+import { MobileMenuProvider } from './context/MobileMenuProvider';
 
 export function LandingHeader() {  
   return (

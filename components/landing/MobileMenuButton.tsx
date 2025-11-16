@@ -1,7 +1,7 @@
 'use client';
 
 import { IconButton } from '@/components/ui/IconButton';
-import { useMobileMenu } from './MobileMenuProvider';
+import { useMobileMenu } from './context/MobileMenuProvider';
 
 export function MobileMenuButton() {
   const { isOpen, toggle } = useMobileMenu();

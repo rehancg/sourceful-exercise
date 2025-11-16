@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { usePromptBox } from "./PromptBoxContext";
+import { usePromptBox } from "./context/PromptBoxContext";
 import { Button } from "@/components/ui/Button";
 import { Popover } from "@/components/ui/Popover";
 import { Tooltip } from "@/components/ui/Tooltip";
@@ -175,7 +175,7 @@ export function GenerateButton({ className }: GenerateButtonProps) {
         <Button
           variant="primary"
           onClick={handleGenerate}
-          disabled={isDisabled}
+          disabled={isDisabled || balance! < 2}
           className={cn(
             "flex items-center gap-2 px-6",
             isDisabled && "opacity-50 cursor-not-allowed"

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { IconButton } from '@/components/ui/IconButton';
 import { NAV_LINKS } from '@/lib/constants';
-import { useMobileMenu } from './MobileMenuProvider';
+import { useMobileMenu } from './context/MobileMenuProvider';
 
 export function MobileMenuOverlay() {
   const { isOpen, close } = useMobileMenu();

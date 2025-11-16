@@ -161,7 +161,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUserState(null);
     setBalance(null);
     setCreditHistory([]);
-    router.push("/");
+    window.location.href = "/";
   };
 
   const isAuthenticated = checkAuth();
