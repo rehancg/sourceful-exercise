@@ -11,6 +11,7 @@ export default function LandingPage() {
           <PromptBox />
         </Suspense>
       </div>
+      <div className="md:pb-24"></div>
     </div>
   );
 }

@@ -72,37 +72,74 @@ export function Tooltip({
         
         const triggerRect = triggerRef.current.getBoundingClientRect();
         const tooltipRect = tooltipRef.current.getBoundingClientRect();
-        const scrollY = window.scrollY;
-        const scrollX = window.scrollX;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const padding = 8;
 
         let top = 0;
         let left = 0;
 
         switch (position) {
           case 'top':
-            top = triggerRect.top + scrollY - tooltipRect.height - 8;
-            left = triggerRect.left + scrollX;
+            top = triggerRect.top - tooltipRect.height - padding;
+            left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
             break;
           case 'bottom':
-            top = triggerRect.bottom + scrollY + 8;
-            left = triggerRect.left + scrollX + triggerRect.width / 2 - tooltipRect.width / 2;
+            top = triggerRect.bottom + padding;
+            left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
             break;
           case 'left':
-            top = triggerRect.top + scrollY + triggerRect.height / 2 - tooltipRect.height / 2;
-            left = triggerRect.left + scrollX - tooltipRect.width - 8;
+            top = triggerRect.top + triggerRect.height / 2 - tooltipRect.height / 2;
+            left = triggerRect.left - tooltipRect.width - padding;
             break;
           case 'right':
-            top = triggerRect.top + scrollY + triggerRect.height / 2 - tooltipRect.height / 2;
-            left = triggerRect.right + scrollX + 8;
+            top = triggerRect.top + triggerRect.height / 2 - tooltipRect.height / 2;
+            left = triggerRect.right + padding;
             break;
+        }
+
+        // Boundary checks to keep tooltip within viewport
+        // Adjust horizontally if tooltip goes off-screen
+        if (left < padding) {
+          left = padding;
+        } else if (left + tooltipRect.width > viewportWidth - padding) {
+          left = viewportWidth - tooltipRect.width - padding;
+        }
+
+        // Adjust vertically if tooltip goes off-screen
+        if (top < padding) {
+          top = padding;
+        } else if (top + tooltipRect.height > viewportHeight - padding) {
+          top = viewportHeight - tooltipRect.height - padding;
         }
 
         setTooltipPosition({ top, left });
         setIsPositioned(true);
       };
 
-      // Use requestAnimationFrame to defer state update
+      // Initial position calculation
       requestAnimationFrame(updatePosition);
+
+      // Update position on scroll and resize
+      const handleScroll = () => {
+        if (isVisible) {
+          requestAnimationFrame(updatePosition);
+        }
+      };
+
+      const handleResize = () => {
+        if (isVisible) {
+          requestAnimationFrame(updatePosition);
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll, true);
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll, true);
+        window.removeEventListener('resize', handleResize);
+      };
     }
   }, [isVisible, position, isSmallScreen]);
 

@@ -13,7 +13,7 @@ export interface NavItem {
 
 export const mainNavItems: NavItem[] = [
   {
-    href: '/dashboard',
+    href: '/home',
     label: 'Home',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -22,7 +22,7 @@ export const mainNavItems: NavItem[] = [
     ),
   },
   {
-    href: '/dashboard/create',
+    href: '/',
     label: 'Create',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,7 +31,7 @@ export const mainNavItems: NavItem[] = [
     ),
   },
   {
-    href: '/dashboard/projects',
+    href: '/',
     label: 'Projects',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,7 +40,7 @@ export const mainNavItems: NavItem[] = [
     ),
   },
   {
-    href: '/dashboard/print-ready',
+    href: '/',
     label: 'Print-Ready',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@ export const mainNavItems: NavItem[] = [
     ),
   },
   {
-    href: '/dashboard/playground',
+    href: '/',
     label: 'Playground',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@ export const mainNavItems: NavItem[] = [
     ),
   },
   {
-    href: '/dashboard/design-judge',
+    href: '/',
     label: 'Design Judge',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ export const mainNavItems: NavItem[] = [
     ),
   },
   {
-    href: '/dashboard/photoshoots',
+    href: '/',
     label: 'Photoshoots',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +82,7 @@ export const mainNavItems: NavItem[] = [
 
 export const bottomNavItems: NavItem[] = [
   {
-    href: '/dashboard/help',
+    href: '/',
     label: 'Help',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,15 +90,15 @@ export const bottomNavItems: NavItem[] = [
       </svg>
     ),
   },
-  {
-    href: '/dashboard/live-chat',
-    label: 'Live chat',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-      </svg>
-    )
-  },
+  // {
+  //   href: '/dashboard/live-chat',
+  //   label: 'Live chat',
+  //   icon: (
+  //     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+  //     </svg>
+  //   )
+  // },
 ];
 
 function NavItemComponent({ item, pathname }: { item: NavItem; pathname: string }) {

@@ -36,7 +36,7 @@ export function AccountMenu({ className }: AccountMenuProps) {
         </svg>
       ),
       badge: 'FREE',
-      href: '/account',
+      href: '/',
     },
     {
       label: 'Pricing',
@@ -55,7 +55,7 @@ export function AccountMenu({ className }: AccountMenuProps) {
           />
         </svg>
       ),
-      href: '/pricing',
+      href: '/',
     },
     {
       label: 'Billing',
@@ -74,7 +74,7 @@ export function AccountMenu({ className }: AccountMenuProps) {
           />
         </svg>
       ),
-      href: '/billing',
+      href: '/',
     },
     {
       label: 'Credit history',
@@ -93,7 +93,7 @@ export function AccountMenu({ className }: AccountMenuProps) {
           />
         </svg>
       ),
-      href: '/account/credits',
+      href: '/',
     },
     {
       label: 'Help centre',
@@ -112,7 +112,7 @@ export function AccountMenu({ className }: AccountMenuProps) {
           />
         </svg>
       ),
-      href: '/help',
+      href: '/',
     },
   ];
 
