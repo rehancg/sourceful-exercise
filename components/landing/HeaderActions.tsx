@@ -16,7 +16,7 @@ export function HeaderActions() {
             Login or sign up
           </Button>
         </Link>
-        <Link href="/signup">
+        <Link href="/login">
           <Button 
             variant="primary" 
             className="h-auto px-4 py-2"
