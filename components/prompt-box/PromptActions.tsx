@@ -39,7 +39,7 @@ export function PromptActions({
 
   return (
     <div className="flex items-center justify-between gap-4 mt-6">
-      {addButtonTooltip ? (
+      {onAddClick && (addButtonTooltip ? (
         <Tooltip
           title={addButtonTooltip.title}
           description={addButtonTooltip.description}
@@ -51,7 +51,7 @@ export function PromptActions({
         </Tooltip>
       ) : (
         addButton
-      )}
+      ))}
       {/* Custom Action Component (e.g., GenerateButton) */}
       {customActionComponent}
       {/* Standard Action Button */}

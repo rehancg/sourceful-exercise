@@ -48,7 +48,9 @@ function PromptBoxContent({ className }: { className?: string }) {
   const buttonLeftIcon = actionButtonConfig?.leftIcon;
   const buttonRightIcon = actionButtonConfig?.rightIcon;
   const customComponent = actionButtonConfig?.customComponent;
+  const showAddButton = selectedFeatureData?.showAddButton === true;
   const addButtonTooltip = selectedFeatureData?.addButtonTooltip;
+  const placeholder = selectedFeatureData?.placeholder || PROMPT_BOX_CONFIG.placeholder;
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onPromptChange(e.target.value);
@@ -131,7 +133,7 @@ function PromptBoxContent({ className }: { className?: string }) {
           <PromptInput
             value={prompt}
             onChange={handlePromptChange}
-            placeholder={PROMPT_BOX_CONFIG.placeholder}
+            placeholder={placeholder}
             aria-label="Enter your prompt"
           />
         )}
@@ -140,12 +142,12 @@ function PromptBoxContent({ className }: { className?: string }) {
       {/* Action Buttons */}
       {!isComingSoon && (
         <PromptActions
-          onAddClick={onAddClick}
+          onAddClick={showAddButton ? onAddClick : undefined}
           onActionClick={() => onActionClick()}
           actionButtonText={buttonText}
           actionButtonLeftIcon={buttonLeftIcon}
           actionButtonRightIcon={buttonRightIcon}
-          addButtonTooltip={addButtonTooltip}
+          addButtonTooltip={showAddButton ? addButtonTooltip : undefined}
           customActionComponent={renderCustomActionComponent()}
         />
       )}
