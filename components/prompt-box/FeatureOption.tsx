@@ -15,14 +15,19 @@ export const FeatureOption = forwardRef<HTMLButtonElement, FeatureOptionProps>(
       <button
         ref={ref}
         onClick={onClick}
+        role="tab"
+        tabIndex={isSelected ? 0 : -1}
+        data-feature-id={feature.id}
         className={cn(
           'flex flex-col items-center justify-center gap-2 p-3 rounded-lg transition-all duration-200',
           'w-full md:w-[130px] h-[110px] flex-shrink-0',
+          'focus:outline-none focus:ring-2 focus:ring-gray-100 focus:ring-offset-2',
           isSelected
             ? 'bg-[#D5ECFF]'
             : 'hover:bg-gray-50'
         )}
-        aria-label={feature.label}
+        aria-label={`${feature.label}${feature.comingSoon ? ', coming soon' : feature.isNew ? ', new feature' : ''}`}
+        aria-selected={isSelected}
         aria-pressed={isSelected}
       >
         <div className={cn(

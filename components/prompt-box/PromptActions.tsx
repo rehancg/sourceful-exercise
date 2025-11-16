@@ -28,8 +28,9 @@ export function PromptActions({
       onClick={onAddClick}
       size="lg"
       variant="default"
-      className="bg-black text-white hover:bg-gray-800 active:bg-gray-900"
-      aria-label="Add more options"
+      className="bg-black text-white hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      aria-label={addButtonTooltip?.title || "Add reference image or file"}
+      aria-describedby={addButtonTooltip ? "add-button-description" : undefined}
     >
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -38,17 +39,22 @@ export function PromptActions({
   );
 
   return (
-    <div className="flex items-center justify-between gap-4 mt-6">
+    <div className="flex items-center justify-between gap-4 mt-6" role="group" aria-label="Action buttons">
       {onAddClick && (addButtonTooltip ? (
-        <Tooltip
-          title={addButtonTooltip.title}
-          description={addButtonTooltip.description}
-          image={addButtonTooltip.image}
-          variant={addButtonTooltip.variant || 'text'}
-          position={addButtonTooltip.position || 'bottom'}
-        >
-          {addButton}
-        </Tooltip>
+        <>
+          <Tooltip
+            title={addButtonTooltip.title}
+            description={addButtonTooltip.description}
+            image={addButtonTooltip.image}
+            variant={addButtonTooltip.variant || 'text'}
+            position={addButtonTooltip.position || 'bottom'}
+          >
+            {addButton}
+          </Tooltip>
+          <div id="add-button-description" className="sr-only">
+            {addButtonTooltip.description}
+          </div>
+        </>
       ) : (
         addButton
       ))}

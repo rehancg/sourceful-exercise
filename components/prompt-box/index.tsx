@@ -56,11 +56,13 @@ function PromptBoxContent({ className }: { className?: string }) {
   };
 
   return (
-    <div
+    <section
       className={cn(
         'bg-white rounded-4xl mx-4 p-4 md:p-8',
         className
       )}
+      aria-label="Prompt input"
+      aria-describedby={selectedFeatureData?.infoMessage ? 'prompt-info-banner' : undefined}
     >
       {/* Feature Options Row */}
       <FeatureOptionsRow
@@ -70,7 +72,7 @@ function PromptBoxContent({ className }: { className?: string }) {
 
       {/* Image Preview */}
       {uploadedImage && (
-        <div className="mb-4 relative inline-block group">
+        <div className="mb-4 relative inline-block group" role="group" aria-label="Uploaded image preview">
           <div className="relative w-24 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
             <Image
               src={uploadedImage}
@@ -81,8 +83,9 @@ function PromptBoxContent({ className }: { className?: string }) {
           </div>
           <button
             onClick={onRemoveImage}
-            className="absolute inset-0 w-full h-full bg-black/0 group-hover:bg-black/20 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-            aria-label="Remove image"
+            className="absolute inset-0 w-full h-full bg-black/20 md:bg-black/0 md:group-hover:bg-black/20 rounded-lg flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            aria-label="Remove uploaded image"
+            type="button"
           >
             <div className="w-8 h-8 bg-white rounded-full border border-gray-300 flex items-center justify-center shadow-sm">
               <svg
@@ -90,6 +93,7 @@ function PromptBoxContent({ className }: { className?: string }) {
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -110,19 +114,25 @@ function PromptBoxContent({ className }: { className?: string }) {
         accept="image/*"
         onChange={onFileSelect}
         className="hidden"
-        aria-label="Upload image"
+        aria-label="Upload reference image"
+        aria-describedby={showAddButton && addButtonTooltip ? "add-button-description" : undefined}
       />
 
       {/* Prompt Input or Info Banner */}
       <div className="mb-6">
         {selectedFeatureData?.infoMessage ? (
-          <InfoBanner message={selectedFeatureData.infoMessage} />
+          <InfoBanner 
+            message={selectedFeatureData.infoMessage}
+            id="prompt-info-banner"
+          />
         ) : (
           <PromptInput
             value={prompt}
             onChange={handlePromptChange}
             placeholder={placeholder}
-            aria-label="Enter your prompt"
+            aria-label={`Enter your prompt for ${selectedFeatureData?.label || 'selected feature'}`}
+            aria-describedby="prompt-description"
+            id="prompt-input"
           />
         )}
       </div>
@@ -139,7 +149,11 @@ function PromptBoxContent({ className }: { className?: string }) {
           customActionComponent={customComponent}
         />
       )}
-    </div>
+      {/* Hidden description for screen readers */}
+      <div id="prompt-description" className="sr-only">
+        {selectedFeatureData?.tooltip?.description || 'Enter a description of what you want to create'}
+      </div>
+    </section>
   );
 }
 

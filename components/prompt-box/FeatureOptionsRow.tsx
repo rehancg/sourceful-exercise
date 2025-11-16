@@ -97,6 +97,45 @@ export function FeatureOptionsRow({
     }
   }, [selectedFeature]);
 
+  // Keyboard navigation for feature options
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!scrollContainerRef.current) return;
+
+    const features = Array.from(scrollContainerRef.current.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const currentIndex = features.findIndex(btn => btn.getAttribute('aria-selected') === 'true');
+    
+    let nextIndex = currentIndex;
+    
+    switch (e.key) {
+      case 'ArrowRight':
+        e.preventDefault();
+        nextIndex = currentIndex < features.length - 1 ? currentIndex + 1 : 0;
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        nextIndex = currentIndex > 0 ? currentIndex - 1 : features.length - 1;
+        break;
+      case 'Home':
+        e.preventDefault();
+        nextIndex = 0;
+        break;
+      case 'End':
+        e.preventDefault();
+        nextIndex = features.length - 1;
+        break;
+      default:
+        return;
+    }
+    
+    if (nextIndex !== currentIndex && features[nextIndex]) {
+      const featureId = features[nextIndex].getAttribute('data-feature-id') as FeatureOptionId;
+      if (featureId && onFeatureSelect) {
+        onFeatureSelect(featureId);
+        features[nextIndex].focus();
+      }
+    }
+  };
+
   return (
     <>
       {/* Mobile View - Show selected feature + More tools button */}
@@ -136,7 +175,12 @@ export function FeatureOptionsRow({
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
+          onKeyDown={handleKeyDown}
           className="flex items-center gap-4 overflow-x-auto scrollbar-hide pb-2"
+          role="tablist"
+          aria-label="Feature selection options"
+          aria-orientation="horizontal"
+          tabIndex={0}
         >
           {PROMPT_BOX_FEATURES.map((feature) => (
             <FeatureOption

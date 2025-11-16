@@ -6,9 +6,12 @@ interface PromptInputProps {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
-  textareaProps?: Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'placeholder' | 'rows'>;
+  textareaProps?: Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'placeholder' | 'rows' | 'id' | 'aria-label' | 'aria-describedby'>;
   formProps?: Omit<FormHTMLAttributes<HTMLFormElement>, 'onSubmit'>;
   className?: string;
+  id?: string;
+  'aria-label'?: string;
+  'aria-describedby'?: string;
 }
 
 export function PromptInput({ 
@@ -19,6 +22,9 @@ export function PromptInput({
   onSubmit,
   textareaProps,
   formProps,
+  id,
+  'aria-label': ariaLabel,
+  'aria-describedby': ariaDescribedBy,
 }: PromptInputProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,9 +34,12 @@ export function PromptInput({
   return (
     <form onSubmit={handleSubmit} {...formProps}>
       <textarea
+        id={id}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedBy}
         className={cn(
           'w-full bg-transparent border-none outline-none resize-none',
           'text-base text-black placeholder:text-gray-400',

@@ -3,11 +3,15 @@ import { cn } from '@/lib/utils';
 interface InfoBannerProps {
   message: string;
   className?: string;
+  id?: string;
 }
 
-export function InfoBanner({ message, className }: InfoBannerProps) {
+export function InfoBanner({ message, className, id }: InfoBannerProps) {
   return (
     <div
+      id={id}
+      role="status"
+      aria-live="polite"
       className={cn(
         'flex items-center gap-3 p-4 rounded-lg bg-gray-50',
         className
