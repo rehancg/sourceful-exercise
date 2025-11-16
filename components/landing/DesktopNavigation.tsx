@@ -15,7 +15,7 @@ export function DesktopNavigation() {
         <Link
           key={link.label}
           href={link.href}
-          className={cn(navLinkBase, navLinkStyles, "focus:outline-none focus:ring-1 focus:ring-gray-50 p-2 rounded")}
+          className={cn(navLinkBase, navLinkStyles, "focus:outline-none focus:ring-1  p-2 rounded")}
         >
           {link.label}
         </Link>
