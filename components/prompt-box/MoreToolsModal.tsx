@@ -2,9 +2,9 @@
 
 import { useEffect } from 'react';
 import { FeatureOption } from './FeatureOption';
-import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features';
 import { FeatureOptionId } from '@/lib/constants';
 import { IconButton } from '@/components/ui/IconButton';
+import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features/index';
 
 interface MoreToolsModalProps {
   isOpen: boolean;

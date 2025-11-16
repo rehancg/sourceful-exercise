@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
-import { FeatureOption as FeatureOptionType } from '@/lib/prompt-box-features';
+import { FeatureOption as FeatureOptionType } from '@/lib/prompt-box-features/types';
 import { Tooltip } from '@/components/ui/Tooltip';
 
 interface FeatureOptionProps {
@@ -28,7 +28,6 @@ export const FeatureOption = forwardRef<HTMLButtonElement, FeatureOptionProps>(
         )}
         aria-label={`${feature.label}${feature.comingSoon ? ', coming soon' : feature.isNew ? ', new feature' : ''}`}
         aria-selected={isSelected}
-        aria-pressed={isSelected}
       >
         <div className={cn(
           'text-black p-2 rounded-lg flex items-center justify-center',

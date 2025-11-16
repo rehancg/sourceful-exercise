@@ -46,9 +46,9 @@ export function MobileNav() {
               </svg>
             </button>
             {/* Logo */}
-            <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+            <Link href="/" className="w-10 h-10 rounded-full bg-black flex items-center justify-center" aria-label="Home">
               <span className="text-white font-bold text-lg">S</span>
-            </div>
+            </Link>
           </div>
 
           {/* Right: Notification & User Avatar */}

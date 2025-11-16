@@ -1,5 +1,3 @@
-'use client';
-
 import { SideNav } from '@/components/home/SideNav';
 import { MobileNav } from '@/components/home/MobileNav';
 import { UserHeader } from '@/components/home/UserHeader';

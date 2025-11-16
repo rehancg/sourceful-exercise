@@ -8,8 +8,8 @@ import { InfoBanner } from './InfoBanner';
 import { PromptActions } from './PromptActions';
 import { PromptBoxProvider, usePromptBox } from './context/PromptBoxContext';
 import { PROMPT_BOX_CONFIG, FeatureOptionId } from '@/lib/constants';
-import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features';
 import { cn } from '@/lib/utils';
+import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features/index';
 
 interface PromptBoxProps {
   className?: string;

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { Tooltip } from '@/components/ui/Tooltip';
-import type { TooltipConfig } from '@/lib/prompt-box-features';
+import type { TooltipConfig } from '@/lib/prompt-box-features/types';
 
 interface PromptActionsProps {
   onAddClick?: () => void;

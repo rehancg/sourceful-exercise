@@ -151,7 +151,7 @@ export function SideNav() {
         </div>
       </Link>
 
-      {/* Main Navigation Items - Equal Spacing */}
+      {/* Main Navigation Items */}
       <div className="flex flex-col items-center justify-between flex-1 w-full">
         <div className="flex flex-col items-center gap-2">
           {mainNavItems.map((item) => (

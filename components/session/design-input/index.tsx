@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { FeatureOptionId } from '@/lib/constants';
-import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features';
+import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features/index';
 import { FeatureDataDisplay } from './type';
 
 interface DesignActionInputProps {
