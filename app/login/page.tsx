@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/Button';
 import { Logo } from '@/components/ui/Logo';
 import { cn } from '@/lib/utils';
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -32,16 +32,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-r-violet-blue-green-subtle px-4 py-8">
-      {/* Logo in top-left */}
-      <div className="mb-8">
-        <Logo href="/" showText={true} size="md" />
-      </div>
-
-      {/* Main Content Card */}
-      <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
-        <div className="w-full max-w-md">
-          <div className="bg-white rounded-2xl shadow-lg p-8">
+    <div className="bg-white rounded-2xl shadow-lg p-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               Log in or sign up in seconds
             </h1>
@@ -122,7 +113,31 @@ export default function LoginPage() {
                 <span className="text-gray-900 font-medium">Sign in with Google</span>
               </button>
             </form>
-          </div>
+    </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <div className="min-h-screen bg-gradient-r-violet-blue-green-subtle px-4 py-8">
+      {/* Logo in top-left */}
+      <div className="mb-8">
+        <Logo href="/" showText={true} size="md" />
+      </div>
+
+      {/* Main Content Card */}
+      <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
+        <div className="w-full max-w-md">
+          <Suspense fallback={
+            <div className="bg-white rounded-2xl shadow-lg p-8 animate-pulse">
+              <div className="h-8 bg-gray-200 rounded mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded mb-8"></div>
+              <div className="h-12 bg-gray-200 rounded mb-6"></div>
+              <div className="h-12 bg-gray-200 rounded"></div>
+            </div>
+          }>
+            <LoginForm />
+          </Suspense>
         </div>
       </div>
     </div>

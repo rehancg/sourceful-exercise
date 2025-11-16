@@ -172,3 +172,5 @@ export function PromptBox({
   );
 }
 
+export { PromptBoxFallback } from './PromptBoxFallback';
+
