@@ -6,7 +6,6 @@ import { FeatureOptionsRow } from './FeatureOptionsRow';
 import { PromptInput } from './PromptInput';
 import { InfoBanner } from './InfoBanner';
 import { PromptActions } from './PromptActions';
-import { GenerateButton } from './GenerateButton';
 import { PromptBoxProvider, usePromptBox } from './context/PromptBoxContext';
 import { PROMPT_BOX_CONFIG, FeatureOptionId } from '@/lib/constants';
 import { PROMPT_BOX_FEATURES } from '@/lib/prompt-box-features';
@@ -54,17 +53,6 @@ function PromptBoxContent({ className }: { className?: string }) {
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onPromptChange(e.target.value);
-  };
-
-  const renderCustomActionComponent = () => {
-    if (customComponent === 'generate' && selectedFeature === 'ai-imagery') {
-      return (
-        <GenerateButton
-          className="ml-auto"
-        />
-      );
-    }
-    return null;
   };
 
   return (
@@ -148,7 +136,7 @@ function PromptBoxContent({ className }: { className?: string }) {
           actionButtonLeftIcon={buttonLeftIcon}
           actionButtonRightIcon={buttonRightIcon}
           addButtonTooltip={showAddButton ? addButtonTooltip : undefined}
-          customActionComponent={renderCustomActionComponent()}
+          customActionComponent={customComponent}
         />
       )}
     </div>
