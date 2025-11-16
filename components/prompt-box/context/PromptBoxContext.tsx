@@ -5,6 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import type { FeatureOptionId } from '@/lib/constants';
 import { PROMPT_BOX_CONFIG } from '@/lib/constants';
 import { useFeatureFromQuery } from '../hooks/useFeatureFromQuery';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface PromptBoxContextType {
   selectedFeature: FeatureOptionId;
@@ -34,6 +35,7 @@ export function PromptBoxProvider({
 }: PromptBoxProviderProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const { isAuthenticated } = useAuth();
   const featureFromQuery = useFeatureFromQuery(initialFeature);
   const [selectedFeature, setSelectedFeature] = useState<FeatureOptionId>(featureFromQuery);
   const [prompt, setPrompt] = useState(initialPrompt);
@@ -113,10 +115,12 @@ export function PromptBoxProvider({
   };
 
   const handleActionClick = (imageCount?: number) => {
+    if (!isAuthenticated) {
+      router.push('/login?redirect=' + encodeURIComponent(window.location.pathname));
+      return;
+    }
     if (selectedFeature === 'ai-imagery') {
-      // Generate a session ID (in a real app, this would come from the backend)
       const sessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-      // Store prompt and image count in sessionStorage to pass to the session page
       if (prompt) {
         sessionStorage.setItem(`session-${sessionId}-prompt`, prompt);
       }
@@ -125,7 +129,6 @@ export function PromptBoxProvider({
       }
       router.push(`/dashboard/session/${sessionId}`);
     }
-    // Add other feature handlers here
   };
 
   return (
