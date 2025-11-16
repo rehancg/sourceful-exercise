@@ -145,24 +145,24 @@ export function SideNav() {
   return (
     <nav className="hidden lg:flex fixed left-2 top-0 h-screen w-20 flex flex-col items-center py-6 z-50">
       {/* Logo */}
-      <div className="mb-8">
+      <Link href="/" className="mb-8 block">
         <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
           <span className="text-white font-bold text-lg">S</span>
         </div>
-      </div>
+      </Link>
 
       {/* Main Navigation Items - Equal Spacing */}
       <div className="flex flex-col items-center justify-between flex-1 w-full">
         <div className="flex flex-col items-center gap-2">
           {mainNavItems.map((item) => (
-            <NavItemComponent key={item.href} item={item} pathname={pathname} />
+            <NavItemComponent key={item.label} item={item} pathname={pathname} />
           ))}
         </div>
 
         {/* Bottom Navigation Items */}
         <div className="flex flex-col items-center gap-2 pb-6">
           {bottomNavItems.map((item) => (
-            <NavItemComponent key={item.href} item={item} pathname={pathname} />
+            <NavItemComponent key={item.label} item={item} pathname={pathname} />
           ))}
         </div>
       </div>
