@@ -149,6 +149,8 @@ sourceful-exercise/
 │   │   ├── context/       # PromptBox context
 │   │   └── hooks/         # Custom hooks
 │   ├── ui/                # Shared UI components
+│   │   └── icons/         # Centralized SVG icon library
+│   ├── auth/              # Authentication components
 │   ├── layout/            # Layout components
 │   ├── landing/           # Landing page components
 │   ├── home/              # Home page components
@@ -156,6 +158,9 @@ sourceful-exercise/
 │   └── session/           # Session page components
 ├── contexts/              # React contexts (Auth, etc.)
 ├── lib/                   # Utilities and constants
+│   └── prompt-box-features/  # Feature configurations
+│       ├── features/      # Individual feature configs
+│       └── types.ts       # Type definitions
 ├── __tests__/             # Unit tests
 └── public/                # Static assets
 ```

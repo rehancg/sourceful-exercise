@@ -49,7 +49,7 @@ export function HeaderActions() {
             />
           </svg>
         </IconButton>
-        <Link href="/signup">
+        <Link href="/login">
           <Button 
             variant="primary" 
             className="h-auto px-4 py-2 text-sm"
